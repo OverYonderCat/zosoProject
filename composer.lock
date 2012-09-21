@@ -1,0 +1,84 @@
+{
+    "hash": "b405f74389bd6a29a6f05a563dd22c7d",
+    "packages": [
+        {
+            "package": "doctrine/common",
+            "version": "2.3.0-RC2"
+        },
+        {
+            "package": "doctrine/data-fixtures",
+            "version": "dev-master",
+            "source-reference": "b29bad9738fada9486961f60542f2d2d77c7b501",
+            "commit-date": "1348136794"
+        },
+        {
+            "package": "doctrine/dbal",
+            "version": "2.3.0-RC2"
+        },
+        {
+            "package": "doctrine/doctrine-module",
+            "version": "dev-master",
+            "source-reference": "9ec205d0549a178c032510893affe3104b056680",
+            "commit-date": "1347504432"
+        },
+        {
+            "package": "doctrine/doctrine-orm-module",
+            "version": "dev-master",
+            "source-reference": "3666f2a476ba319eb97323577e9e1d0380b99d94",
+            "commit-date": "1346877566"
+        },
+        {
+            "package": "doctrine/migrations",
+            "version": "dev-master",
+            "source-reference": "3dd738b2a709f4d5185c144292189c6e708ca37d",
+            "commit-date": "1348090059"
+        },
+        {
+            "package": "doctrine/orm",
+            "version": "2.3.0-RC2"
+        },
+        {
+            "package": "symfony/console",
+            "version": "v2.1.2"
+        },
+        {
+            "package": "zendframework/zendframework",
+            "version": "2.0.1"
+        },
+        {
+            "package": "zf-commons/zfc-base",
+            "version": "dev-master",
+            "source-reference": "5057eb22bdc5a97e4b23716079485bfa92e44054",
+            "commit-date": "1347633346"
+        },
+        {
+            "package": "zf-commons/zfc-user",
+            "version": "dev-master",
+            "source-reference": "25232341dd0426a238e1ff53b2e2eb987a3430bc",
+            "commit-date": "1347632312"
+        },
+        {
+            "package": "zf-commons/zfc-user-doctrine-orm",
+            "version": "dev-master",
+            "source-reference": "71017a46732916432d986b208267661ad2157d5d",
+            "commit-date": "1346925644"
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "doctrine/common": 5,
+        "doctrine/dbal": 5,
+        "doctrine/data-fixtures": 20,
+        "doctrine/doctrine-module": 20,
+        "doctrine/doctrine-orm-module": 20,
+        "doctrine/migrations": 20,
+        "doctrine/orm": 5,
+        "zf-commons/zfc-base": 20,
+        "zf-commons/zfc-user": 20,
+        "zf-commons/zfc-user-doctrine-orm": 20
+    }
+}
