@@ -36,7 +36,7 @@ class Frontend {
 		return $this->event;
 	}
 	
-	public function run()
+	public function getViewModel()
 	{
 		// fetch slug from routematch
 		$slug = $this->event->getRouteMatch()->getParam('slug');
@@ -44,6 +44,6 @@ class Frontend {
 		$pageRepository = $this->em->getRepository('Zoso\Entity\Page');
 		$pageEntity = $pageRepository->fetchBySlug($slug);
 		$page = new Page($pageEntity);
-		var_dump($page);
+		return $page->createViewModel();
 	}
 }

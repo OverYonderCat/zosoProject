@@ -2,8 +2,7 @@
 
 namespace Zoso\Controller;
 
-use Zend\View\Helper\ViewModel,
-	Zoso\Frontend\Frontend;
+use Zoso\Frontend\Frontend;
 
 class SlugController extends BaseController
 {
@@ -14,12 +13,7 @@ class SlugController extends BaseController
 		$frontend = new Frontend();
 		$frontend->setEntityManager($this->getEntityManager());
 		$frontend->setEvent($this->getEvent());
-		$frontend->run();
-		
-		var_dump($frontend);
-		
-		
-		return new ViewModel();		
+		return $frontend->getViewModel();
 	}
 	
 	

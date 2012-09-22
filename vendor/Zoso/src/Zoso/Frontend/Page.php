@@ -2,6 +2,8 @@
 
 namespace Zoso\Frontend;
 
+use Zend\View\Model\ViewModel;
+
 class Page implements PageInterface
 {
 	
@@ -13,9 +15,10 @@ class Page implements PageInterface
 	}
 	
 	
-	public function render()
+	public function createViewModel()
 	{
 		$blockComposite = new BlockComposite();
+		return new ViewModel();
 	}
 	
 }

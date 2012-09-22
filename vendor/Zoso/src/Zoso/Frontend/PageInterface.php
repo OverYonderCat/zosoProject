@@ -4,5 +4,5 @@ namespace Zoso\Frontend;
 
 interface PageInterface
 {
-	public function render();
+	public function createViewModel();
 }
