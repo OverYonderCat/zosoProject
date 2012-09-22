@@ -42,7 +42,8 @@ class Frontend {
 		$slug = $this->event->getRouteMatch()->getParam('slug');
 		// fetch pageEntity via slug
 		$pageRepository = $this->em->getRepository('Zoso\Entity\Page');
-		$page = $pageRepository->fetchBySlug($slug);
+		$pageEntity = $pageRepository->fetchBySlug($slug);
+		$page = new Page($pageEntity);
 		var_dump($page);
 	}
 }
