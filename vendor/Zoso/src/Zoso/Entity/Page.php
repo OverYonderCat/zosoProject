@@ -37,8 +37,14 @@ class Page {
 	protected $slug;
 	
 	/**
+	 * @ORM\OneToOne(targetEntity="Page")
+ 	 * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+	 */
+	protected $parent;
+	
+	/**
 	 * @ORM\ManyToMany(targetEntity="Block")
-	 * @ORM\JoinTable(name="page_block")
+	 * @ORM\JoinTable(name="pages_blocks")
 	 */
 	protected $blocks;
 	

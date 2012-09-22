@@ -3,7 +3,7 @@
 return array(
 	'controllers' => array(
         'invokables' => array(
-            'zoso-front' => 'Zoso\Controller\FrontController',
+            'zoso-slug' => 'Zoso\Controller\SlugController',
         ),
     ),
 	'router' => array(
@@ -17,7 +17,7 @@ return array(
 						'slug'	=> '.*'		
 					),
 					'defaults'		=> array(
-						'controller'	=> 'zoso-front',
+						'controller'	=> 'zoso-slug',
 						'action'		=> 'process',
 						'slug'			=> 'startpage'		
 					)		
@@ -33,4 +33,19 @@ return array(
 			__DIR__ . '/../view',
 		),
 	),
+		
+	'doctrine' => array(
+		'driver' => array(
+			'Zoso_driver' => array(
+				'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+				'cache' => 'array',
+				'paths' => array(__DIR__ . '/../src/Zoso/Entity')
+			),
+			'orm_default' => array(
+				'drivers' => array(
+					'Zoso\Entity' => 'Zoso_driver'
+				)
+			)
+		)
+	)
 );
