@@ -13,7 +13,8 @@ class PageRepository extends BaseRepository
 		   ->where('page.slug = :slug')
 		   ->setParameter('slug', $slug);
 		$query = $qb->getQuery();
-		return $query->getResult();
+		$result = $query->getResult();
+		return $result[0];
 	}
 	
 }

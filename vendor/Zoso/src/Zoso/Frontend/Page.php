@@ -7,18 +7,29 @@ use Zend\View\Model\ViewModel;
 class Page implements PageInterface
 {
 	
-	protected $entity;
+	protected $pageEntity;
 	
-	public function __construct($entity)
+	public function __construct($pageEntity)
 	{
-		$this->entity = $entity;
+		$this->pageEntity = $pageEntity;
 	}
-	
 	
 	public function createViewModel()
 	{
-		$blockComposite = new BlockComposite();
-		return new ViewModel();
+		if(empty($this->pageEntity)) {
+			$blockData = array();
+		} else {
+			$blockComposite = new BlockComposite();
+			foreach($this->pageEntity->getBlocks()->toArray() as $blockEntity) {
+				$classname = '\\Zoso\Frontend\\' . $blockEntity->getClassname();
+				$block = new $classname($blockEntity);
+				$blockComposite->addBlock($block);
+			}
+			$blockData = $blockComposite->render();
+		}
+		return new ViewModel(array(
+			'blocks' => $blockData
+		));
 	}
 	
 }

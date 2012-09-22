@@ -10,7 +10,7 @@ class BaseController extends AbstractActionController
 	/**
 	 * @var Doctrine\ORM\EntityManager
 	 */
-	protected $em;
+	protected $em = null;
 	
 	public function getEntityManager()
 	{

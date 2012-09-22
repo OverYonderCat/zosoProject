@@ -35,6 +35,8 @@ class Block {
 	 */
 	protected $classname;
 	
+	//protected $content;
+	
 	public function getId()
 	{
 		return $this->id;
@@ -59,7 +61,7 @@ class Block {
 	
 	public function getClassname()
 	{
-		return $this->slug;
+		return $this->classname;
 	}
 	
 	public function setClassname($classname)
@@ -67,6 +69,8 @@ class Block {
 		$this->classname = $classname;
 		return $this;
 	}
+	
+	
 	
 }
 

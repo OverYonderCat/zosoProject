@@ -12,30 +12,19 @@ class Module implements
     ConfigProviderInterface,
     ServiceProviderInterface
 {
-	/*
-	 *
-	Zend\Mvc\Application: bootstrap
-	Zend\Mvc\Application: route
-	Zend\Mvc\Application: dispatch
-	Zend\Mvc\Controller\ActionController: dispatch (if controller extends this class)
-	Zend\Mvc\Application: render
-	Zend\View\View: renderer
-	Zend\View\View: response
-	Zend\Mvc\Application: finish
-	
-	*/
+
 	public function init(ModuleManager $moduleManager)
 	{
-		$eventManager = $moduleManager->getEventManager();
-		$sharedEvents = $eventManager->getSharedManager();
-		$sharedEvents->attach('Zend\Mvc\Application', 'bootstrap', array($this, 'Appbootstrap'));
-		$sharedEvents->attach('Zend\Mvc\Application', 'route', array($this, 'Approute'));
-		$sharedEvents->attach('Zend\Mvc\Application', 'dispatch', array($this, 'Appdispatch'));
-		$sharedEvents->attach('Zend\Mvc\Controller\ActionController', 'dispatch', array($this, 'Condispatch'));
-		$sharedEvents->attach('Zend\Mvc\Application', 'render', array($this, 'Apprender'));
-		$sharedEvents->attach('Zend\View\View', 'renderer', array($this, 'Viewrenderer'));
-		$sharedEvents->attach('Zend\View\View', 'response', array($this, 'Viewrespone'));
-		$sharedEvents->attach('Zend\Mvc\Application', 'finish', array($this, 'Appfinish'));
+// 		$eventManager = $moduleManager->getEventManager();
+// 		$sharedEvents = $eventManager->getSharedManager();
+// 		$sharedEvents->attach('Zend\Mvc\Application', 'bootstrap', array($this, 'Appbootstrap'));
+// 		$sharedEvents->attach('Zend\Mvc\Application', 'route', array($this, 'Approute'));
+// 		$sharedEvents->attach('Zend\Mvc\Application', 'dispatch', array($this, 'Appdispatch'));
+// 		$sharedEvents->attach('Zend\Mvc\Controller\ActionController', 'dispatch', array($this, 'Condispatch'));
+// 		$sharedEvents->attach('Zend\Mvc\Application', 'render', array($this, 'Apprender'));
+// 		$sharedEvents->attach('Zend\View\View', 'renderer', array($this, 'Viewrenderer'));
+// 		$sharedEvents->attach('Zend\View\View', 'response', array($this, 'Viewrespone'));
+// 		$sharedEvents->attach('Zend\Mvc\Application', 'finish', array($this, 'Appfinish'));
 	}
 	
 	
