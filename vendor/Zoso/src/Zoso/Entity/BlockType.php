@@ -35,6 +35,16 @@ class BlockType extends BaseEntity
 	 * @ORM\Column(type="string")
 	 */
 	protected $classpath;
+	
+	/**
+	 * @ORM\OneToMany(targetEntity="Field", mappedBy="blocktype")
+	 */
+	protected $fields;
+	
+	public function __construct()
+	{
+		$this->fields = new ArrayCollection();
+	}
 
 	public function getId()
 	{
@@ -66,6 +76,17 @@ class BlockType extends BaseEntity
 	public function setClasspath($classpath)
 	{
 		$this->classpath = $classpath;
+		return $this;
+	}
+	
+	public function getFields()
+	{
+		return $this->fields;
+	}
+	
+	public function setFields(ArrayCollection $fields)
+	{
+		$this->fields = $fields;
 		return $this;
 	}
 }

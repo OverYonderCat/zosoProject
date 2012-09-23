@@ -37,16 +37,15 @@ class Field extends BaseEntity
 	protected $value;
 	
 	/**
-	 * @ORM\OneToOne(targetEntity="BlockType")
-	 * @ORM\JoinColumn(name="blocktype_id", referencedColumnName="id")
-	 */
-	protected $blocktype_id;
-	
-	/**
 	 * @ORM\OneToOne(targetEntity="FieldType")
 	 * @ORM\JoinColumn(name="fieldtype_id", referencedColumnName="id")
 	 */
-	protected $fieldtype_id;
+	protected $fieldtype;
+	
+	/**
+	 * @ORM\ManyToOne(targetEntity="BlockType", inversedBy="fields")
+	 */
+	protected $blocktype;
 
 	public function getId()
 	{
@@ -81,21 +80,22 @@ class Field extends BaseEntity
 		return $this;
 	}
 	
-	public function getBlockTypeId() {
-		return $this->blocktype_id;
+	public function getBlockType() {
+		return $this->blocktype;
 	}
 	
-	public function setBlockTypeId($blocktype_id) {
-		$this->blocktype_id = $blocktype_id;
+	public function setBlockType($blocktype) {
+		$this->blocktype = $blocktype;
 		return $this;
 	}
 	
-	public function getFieldTypeId() {
-		return $this->fieldtype_id;
+	public function getFieldType() {
+		return $this->fieldtype;
 	}
 	
-	public function setFieldTypeId($fieldtype_id) {
-		$this->fieldtype_id = $fieldtype_id;
+	public function setFieldType($fieldtype) {
+		$this->fieldtype = $fieldtype;
 		return $this;
 	}
+	
 }

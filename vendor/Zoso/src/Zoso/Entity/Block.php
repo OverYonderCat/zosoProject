@@ -35,7 +35,7 @@ class Block extends BaseEntity
 	 * @ORM\OneToOne(targetEntity="BlockType")
 	 * @ORM\JoinColumn(name="blocktype_id", referencedColumnName="id")
 	 */
-	protected $blocktype_id;
+	protected $blocktype;
 
 	public function getId()
 	{
@@ -59,12 +59,12 @@ class Block extends BaseEntity
 		return $this;
 	}
 	
-	public function getBlockTypeId() {
-		return $this->blocktype_id;
+	public function getBlockType() {
+		return $this->blocktype;
 	}
 	
-	public function setBlockTypeId($blocktype_id) {
-		$this->blocktype_id = $blocktype_id;
+	public function setBlockType($blocktype) {
+		$this->blocktype = $blocktype;
 		return $this;
 	}
 }

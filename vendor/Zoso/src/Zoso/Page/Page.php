@@ -19,7 +19,7 @@ class Page
 		$blockData = array();
 		if(!empty($this->pageEntity)) {
 			foreach($this->pageEntity->getBlocks()->toArray() as $blockEntity) {
-				$classname = $blockEntity->getClassname();
+				$classname = $blockEntity->getBlockType()->getClasspath();
 				$block = new $classname($blockEntity);
 				$blockData[] = $block->getHtml();
 			}
