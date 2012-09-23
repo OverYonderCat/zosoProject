@@ -16,7 +16,8 @@ use Doctrine\ORM\Mapping as ORM,
  * @ORM\Table(name="block")
  *
  */
-class Block {
+class Block extends BaseEntity
+{
 	
 	/**
 	 * @ORM\Id
@@ -31,10 +32,11 @@ class Block {
 	protected $label;
 	
 	/**
-	 * @ORM\Column(type="string")
+	 * @ORM\OneToOne(targetEntity="BlockType")
+	 * @ORM\JoinColumn(name="blocktype_id", referencedColumnName="id")
 	 */
-	protected $classname;
-	
+	protected $blocktype_id;
+
 	public function getId()
 	{
 		return $this->id;
@@ -57,17 +59,12 @@ class Block {
 		return $this;
 	}
 	
-	public function getClassname()
-	{
-		return $this->classname;
+	public function getBlockTypeId() {
+		return $this->blocktype_id;
 	}
 	
-	public function setClassname($classname)
-	{
-		$this->classname = $classname;
+	public function setBlockTypeId($blocktype_id) {
+		$this->blocktype_id = $blocktype_id;
 		return $this;
 	}
-	
 }
-
-?>

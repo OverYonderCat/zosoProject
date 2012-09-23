@@ -17,7 +17,8 @@ use Doctrine\ORM\Mapping as ORM,
  * @ORM\Table(name="page")
  *
  */
-class Page {
+class Page extends BaseEntity
+{
 	
 	/**
 	 * @ORM\Id
@@ -95,12 +96,4 @@ class Page {
 	{
 		$this->blocks = $blocks;
 	}
-	
-	public function getArrayCopy()
-	{
-		return get_object_vars($this);
-	}
-	
 }
-
-?>
