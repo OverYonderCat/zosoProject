@@ -13,7 +13,6 @@ Zend\InputFilter\InputFilterInterface;
  * Field
  *
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="Zoso\Repository\FieldRepository")
  * @ORM\Table(name="field")
  *
  */
@@ -95,7 +94,7 @@ class Field extends BaseEntity
 		return $this->fieldtype_id;
 	}
 	
-	public function setBlockTypeId($fieldtype_id) {
+	public function setFieldTypeId($fieldtype_id) {
 		$this->fieldtype_id = $fieldtype_id;
 		return $this;
 	}

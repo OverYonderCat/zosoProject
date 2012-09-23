@@ -3,7 +3,8 @@
 namespace Zoso\Frontend;
 
 use Zend\Mvc\MvcEvent,
-	Doctrine\ORM\EntityManager;
+	Doctrine\ORM\EntityManager,
+	Zoso\Page\Page;
 
 class Frontend {
 	
@@ -44,6 +45,6 @@ class Frontend {
 		$pageRepository = $this->em->getRepository('Zoso\Entity\Page');
 		$pageEntity = $pageRepository->fetchBySlug($slug);
 		$page = new Page($pageEntity);
-		return $page->createViewModel();
+		return $page->getPageModel();
 	}
 }

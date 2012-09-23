@@ -10,13 +10,13 @@ Zend\InputFilter\InputFilterAwareInterface,
 Zend\InputFilter\InputFilterInterface;
 
 /**
- * BlockType
+ * Page
  *
  * @ORM\Entity
- * @ORM\Table(name="blocktype")
+ * @ORM\Table(name="fieldtype")
  *
  */
-class BlockType extends BaseEntity
+class FieldType extends BaseEntity
 {
 	
 	/**
@@ -25,17 +25,22 @@ class BlockType extends BaseEntity
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
 	protected $id;
-
-	/**
-	 * @ORM\Column(type="string")
-	 */
-	protected $name;
 	
 	/**
 	 * @ORM\Column(type="string")
 	 */
-	protected $classpath;
-
+	protected $inputType;
+	
+	/**
+	 * @ORM\Column(type="string")
+	 */
+	protected $defaultValue;
+	
+	/**
+	 * @ORM\Column(type="string")
+	 */
+	protected $options;
+	
 	public function getId()
 	{
 		return $this->id;
@@ -47,25 +52,37 @@ class BlockType extends BaseEntity
 		return $this;
 	}
 	
-	public function getName()
+	public function getInputType()
 	{
-		return $this->name;
+		return $this->inputType;
 	}
 	
-	public function setName($name)
+	public function setInputType($inputType)
 	{
-		$this->name = $name;
+		$this->inputType = $inputType;
 		return $this;
 	}
 	
-	public function getClasspath()
+	public function getDefaultValue()
 	{
-		return $this->classpath;
+		return $this->inputType;
 	}
 	
-	public function setClasspath($classpath)
+	public function setDefaultValue($defaultValue)
 	{
-		$this->classpath = $classpath;
+		$this->defaultValue = $defaultValue;
 		return $this;
 	}
+	
+	public function getOptions()
+	{
+		return $this->inputType;
+	}
+	
+	public function setOptions($options)
+	{
+		$this->options = $options;
+		return $this;
+	}
+	
 }
