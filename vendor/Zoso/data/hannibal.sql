@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 23. Sep 2012 um 06:55
+-- Erstellungszeit: 23. Sep 2012 um 07:14
 -- Server Version: 5.5.16
 -- PHP-Version: 5.3.8
 
@@ -13,6 +13,114 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `zosoproject`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `block`
+--
+
+CREATE TABLE IF NOT EXISTS `block` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `blocktype_id` int(11) DEFAULT NULL,
+  `label` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_831B972275D13D9B` (`blocktype_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Daten für Tabelle `block`
+--
+
+INSERT INTO `block` (`id`, `blocktype_id`, `label`) VALUES
+(2, 1, 'BlockLabel');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `blocktype`
+--
+
+CREATE TABLE IF NOT EXISTS `blocktype` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `classpath` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Daten für Tabelle `blocktype`
+--
+
+INSERT INTO `blocktype` (`id`, `name`, `classpath`) VALUES
+(1, 'SampleBlock', '\\Zoso\\Block\\SampleBlock');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `field`
+--
+
+CREATE TABLE IF NOT EXISTS `field` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `blocktype_id` int(11) DEFAULT NULL,
+  `fieldtype_id` int(11) DEFAULT NULL,
+  `label` varchar(255) NOT NULL,
+  `value` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_5BF54558163BE712` (`fieldtype_id`),
+  KEY `IDX_5BF5455875D13D9B` (`blocktype_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Daten für Tabelle `field`
+--
+
+INSERT INTO `field` (`id`, `blocktype_id`, `fieldtype_id`, `label`, `value`) VALUES
+(2, 1, 1, 'Fieldlabel', 'FiedValue');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `fieldtype`
+--
+
+CREATE TABLE IF NOT EXISTS `fieldtype` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `inputType` varchar(255) NOT NULL,
+  `defaultValue` varchar(255) NOT NULL,
+  `options` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Daten für Tabelle `fieldtype`
+--
+
+INSERT INTO `fieldtype` (`id`, `inputType`, `defaultValue`, `options`) VALUES
+(1, 'input', 'defaultValue', 'options');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `page`
+--
+
+CREATE TABLE IF NOT EXISTS `page` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) DEFAULT NULL,
+  `label` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_140AB620727ACA70` (`parent_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Daten für Tabelle `page`
+--
+
+INSERT INTO `page` (`id`, `parent_id`, `label`, `slug`) VALUES
+(1, NULL, 'Testpage', 'testslug');
 
 -- --------------------------------------------------------
 
@@ -35,9 +143,45 @@ CREATE TABLE IF NOT EXISTS `pages_blocks` (
 INSERT INTO `pages_blocks` (`page_id`, `block_id`) VALUES
 (1, 2);
 
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `display_name` varchar(50) DEFAULT NULL,
+  `password` varchar(128) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`),
+  UNIQUE KEY `UNIQ_8D93D649F85E0677` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 --
 -- Constraints der exportierten Tabellen
 --
+
+--
+-- Constraints der Tabelle `block`
+--
+ALTER TABLE `block`
+  ADD CONSTRAINT `FK_831B972275D13D9B` FOREIGN KEY (`blocktype_id`) REFERENCES `blocktype` (`id`);
+
+--
+-- Constraints der Tabelle `field`
+--
+ALTER TABLE `field`
+  ADD CONSTRAINT `FK_5BF54558163BE712` FOREIGN KEY (`fieldtype_id`) REFERENCES `fieldtype` (`id`),
+  ADD CONSTRAINT `FK_5BF5455875D13D9B` FOREIGN KEY (`blocktype_id`) REFERENCES `blocktype` (`id`);
+
+--
+-- Constraints der Tabelle `page`
+--
+ALTER TABLE `page`
+  ADD CONSTRAINT `FK_140AB620727ACA70` FOREIGN KEY (`parent_id`) REFERENCES `page` (`id`);
 
 --
 -- Constraints der Tabelle `pages_blocks`
