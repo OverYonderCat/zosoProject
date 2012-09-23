@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 22. Sep 2012 um 22:18
+-- Erstellungszeit: 23. Sep 2012 um 00:57
 -- Server Version: 5.5.16
 -- PHP-Version: 5.3.8
 
@@ -25,7 +25,14 @@ CREATE TABLE IF NOT EXISTS `block` (
   `label` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `classname` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+
+--
+-- Daten für Tabelle `block`
+--
+
+INSERT INTO `block` (`id`, `label`, `classname`) VALUES
+(1, 'testBlockLabel', 'SampleBlock');
 
 -- --------------------------------------------------------
 
@@ -37,9 +44,16 @@ CREATE TABLE IF NOT EXISTS `page` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(150) COLLATE utf8_bin DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `parent_id` int(3) NOT NULL,
+  `parent_id` int(3) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+
+--
+-- Daten für Tabelle `page`
+--
+
+INSERT INTO `page` (`id`, `label`, `slug`, `parent_id`) VALUES
+(1, 'testlabel', 'testslug', NULL);
 
 -- --------------------------------------------------------
 
@@ -51,6 +65,13 @@ CREATE TABLE IF NOT EXISTS `pages_blocks` (
   `page_id` int(3) DEFAULT NULL,
   `block_id` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Daten für Tabelle `pages_blocks`
+--
+
+INSERT INTO `pages_blocks` (`page_id`, `block_id`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -72,3 +93,6 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 -- Daten für Tabelle `user`
 --
+
+INSERT INTO `user` (`user_id`, `username`, `email`, `display_name`, `password`) VALUES
+(1, NULL, 'sweber@montfortwerbung.com', NULL, '$2y$14$lRc4xoCIUVq/clZkkpg.uetPiBfzoWvr/GGj3M.8sVMFrvisV82y6');

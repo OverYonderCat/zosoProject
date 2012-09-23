@@ -2,17 +2,8 @@
 
 namespace Zoso\Frontend;
 
-use Zoso\Entity\Block;
-
-class SampleBlock implements BlockInterface
+class SampleBlock extends AbstractBlock
 {
-	
-	protected $blockEntity;
-	
-	public function __construct(Block $blockEntity)
-	{
-		$this->blockEntity = $blockEntity;
-	}
 	
 	public function render()
 	{

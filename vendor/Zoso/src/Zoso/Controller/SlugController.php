@@ -2,6 +2,8 @@
 
 namespace Zoso\Controller;
 
+use Zoso\Frontend\BlockContentTable;
+
 use Zoso\Frontend\Frontend;
 
 class SlugController extends BaseController
