@@ -37,7 +37,7 @@ class Frontend {
 		return $this->event;
 	}
 	
-	public function getViewModel()
+	public function getSlugModel()
 	{
 		// fetch slug from routematch
 		$slug = $this->event->getRouteMatch()->getParam('slug');

@@ -32,8 +32,7 @@ class Block extends BaseEntity
 	protected $label;
 	
 	/**
-	 * @ORM\OneToOne(targetEntity="BlockType")
-	 * @ORM\JoinColumn(name="blocktype_id", referencedColumnName="id")
+	 * @ORM\ManyToOne(targetEntity="BlockType", cascade={"all"}, fetch="EAGER")
 	 */
 	protected $blocktype;
 

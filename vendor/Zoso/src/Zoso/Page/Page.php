@@ -3,6 +3,7 @@
 namespace Zoso\Page;
 
 use Zend\View\Model\ViewModel;
+use Zoso\Block\Block;
 
 class Page
 {
@@ -19,9 +20,8 @@ class Page
 		$blockData = array();
 		if(!empty($this->pageEntity)) {
 			foreach($this->pageEntity->getBlocks()->toArray() as $blockEntity) {
-				$classname = $blockEntity->getBlockType()->getClasspath();
-				$block = new $classname($blockEntity);
-				$blockData[] = $block->getHtml();
+				$block = new Block($blockEntity);
+				$blockData[$blockEntity->getId()] = $block->getHtml();
 			}
 		}
 		return new ViewModel(array('blocks' => $blockData));

@@ -34,7 +34,7 @@ class BlockType extends BaseEntity
 	/**
 	 * @ORM\Column(type="string")
 	 */
-	protected $classpath;
+	protected $templateFile;
 	
 	/**
 	 * @ORM\OneToMany(targetEntity="Field", mappedBy="blocktype")
@@ -68,14 +68,14 @@ class BlockType extends BaseEntity
 		return $this;
 	}
 	
-	public function getClasspath()
+	public function getTemplateFile()
 	{
-		return $this->classpath;
+		return $this->templateFile;
 	}
 	
-	public function setClasspath($classpath)
+	public function setTemplateFile($templateFile)
 	{
-		$this->classpath = $classpath;
+		$this->templateFile = $templateFile;
 		return $this;
 	}
 	

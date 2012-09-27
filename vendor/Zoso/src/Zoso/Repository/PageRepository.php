@@ -14,6 +14,9 @@ class PageRepository extends BaseRepository
 		   ->setParameter('slug', $slug);
 		$query = $qb->getQuery();
 		$result = $query->getResult();
+		if(empty($result)) {
+			return null;
+		}
 		return $result[0];
 	}
 	

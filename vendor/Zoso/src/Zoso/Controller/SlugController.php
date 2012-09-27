@@ -15,7 +15,7 @@ class SlugController extends BaseController
 		$frontend = new Frontend();
 		$frontend->setEntityManager($this->getEntityManager());
 		$frontend->setEvent($this->getEvent());
-		return $frontend->getViewModel();
+		return $frontend->getSlugModel();
 	}
 	
 	
