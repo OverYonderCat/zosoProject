@@ -4,35 +4,57 @@ namespace Zoso\Block;
 
 use Zend\View\Model\ViewModel,
 	Zend\View\Renderer\PhpRenderer,
-	Zend\View\Resolver,
-	Zoso\Entity\Block as Entity;
+	Zend\View\Resolver;
 
 class Block implements BlockInterface
 {
 	
-	protected $entity;
+	protected $blockData;
 	
-	public function __construct(Entity $entity = null)
+	public function __construct($blockData)
 	{
-		$this->entity = $entity;
+		$this->blockData = $blockData;
 	}
 	
-	public function getEntity()
+	public function getData()
 	{
-		return $this->entity;
+		return $this->blockData;
 	}
 	
-	public function setEntity(Entity $entity)
+	public function setData($blockData)
 	{
-		$this->entity = $entity;
+		$this->blockData = $blockData;
 		return $this;
 	}
 	
 	public function getHtml()
 	{
-		if($this->entity === null) {
-			throw new \Exception('method getHtml() cannot be called without a defined entity');
+		if($this->blockData === null) {
+			throw new \Exception('method getHtml() cannot be called without $blockData');
 		}
+		
+		$blockName		= $this->blockData['blocktype']['name'];
+		$templateFile	= $this->blockData['blocktype']['templateFile'];
+		$fields			= $this->blockData['blocktype']['fields'];
+		
+		$publicPath 	= realpath(__DIR__ . '/../../../../../public/templates/blocks');
+		$defaultPath	= realpath(__DIR__ . '/../../../view/zoso/templates/blocks');
+		$templatePath	= (is_file($publicPath . '/' . $templateFile)) ? $publicPath . DIRECTORY_SEPARATOR . $templateFile : $defaultPath . DIRECTORY_SEPARATOR . $templateFile;
+		$templateMap	= array(
+				'blockTemplate'	=> $templatePath
+		);
+		$resolver		= new Resolver\TemplateMapResolver($templateMap);
+		$renderer		= new PhpRenderer();
+		$renderer->setResolver($resolver);
+		$viewModel		= new ViewModel();
+		$viewModel->setTemplate('blockTemplate');
+		$viewModel->setVariables(array(
+				'name'		=> $blockName,
+				'fields' 	=> $fields
+		));
+		return $renderer->render($viewModel);
+		
+		/*
 		$blockType = $this->entity->getBlockType();
 		$blockName		= $blockType->getName();
 		$templateFile	= $blockType->getTemplateFile();
@@ -58,6 +80,7 @@ class Block implements BlockInterface
 		));
 		$html 			= $renderer->render($viewModel);
 		return $html;
+		*/
 	}
 	
 }

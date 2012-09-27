@@ -31,16 +31,6 @@ class FieldType extends BaseEntity
 	 */
 	protected $inputType;
 	
-	/**
-	 * @ORM\Column(type="string")
-	 */
-	protected $defaultValue;
-	
-	/**
-	 * @ORM\Column(type="string")
-	 */
-	protected $options;
-	
 	public function getId()
 	{
 		return $this->id;
@@ -62,27 +52,5 @@ class FieldType extends BaseEntity
 		$this->inputType = $inputType;
 		return $this;
 	}
-	
-	public function getDefaultValue()
-	{
-		return $this->inputType;
-	}
-	
-	public function setDefaultValue($defaultValue)
-	{
-		$this->defaultValue = $defaultValue;
-		return $this;
-	}
-	
-	public function getOptions()
-	{
-		return $this->inputType;
-	}
-	
-	public function setOptions($options)
-	{
-		$this->options = $options;
-		return $this;
-	}
-	
+		
 }

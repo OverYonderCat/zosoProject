@@ -37,6 +37,16 @@ class Field extends BaseEntity
 	protected $value;
 	
 	/**
+	 * @ORM\Column(type="string")
+	 */
+	protected $defaultValue;
+	
+	/**
+	 * @ORM\Column(type="string")
+	 */
+	protected $options;
+	
+	/**
 	 * @ORM\OneToOne(targetEntity="FieldType")
 	 * @ORM\JoinColumn(name="fieldtype_id", referencedColumnName="id")
 	 */
@@ -77,6 +87,28 @@ class Field extends BaseEntity
 	public function setValue($value)
 	{
 		$this->value = $value;
+		return $this;
+	}
+	
+	public function getDefaultValue()
+	{
+		return $this->inputType;
+	}
+	
+	public function setDefaultValue($defaultValue)
+	{
+		$this->defaultValue = $defaultValue;
+		return $this;
+	}
+	
+	public function getOptions()
+	{
+		return $this->inputType;
+	}
+	
+	public function setOptions($options)
+	{
+		$this->options = $options;
 		return $this;
 	}
 	

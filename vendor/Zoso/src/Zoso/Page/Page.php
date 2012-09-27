@@ -8,23 +8,23 @@ use Zoso\Block\Block;
 class Page
 {
 	
-	protected $pageEntity;
+	protected $pageData;
 	
-	public function __construct($pageEntity)
+	public function __construct($pageData)
 	{
-		$this->pageEntity = $pageEntity;
+		$this->pageData = $pageData;
 	}
 	
 	public function getPageModel()
 	{
-		$blockData = array();
-		if(!empty($this->pageEntity)) {
-			foreach($this->pageEntity->getBlocks()->toArray() as $blockEntity) {
-				$block = new Block($blockEntity);
-				$blockData[$blockEntity->getId()] = $block->getHtml();
+		$blocksArray = array();
+		if(!empty($this->pageData)) {
+			foreach($this->pageData['blocks'] as $blockData) {
+				$block = new Block($blockData);
+				$blocksArray[$blockData['id']] = $block->getHtml();
 			}
 		}
-		return new ViewModel(array('blocks' => $blockData));
+		return new ViewModel(array('blocks' => $blocksArray));
 	}
 	
 }

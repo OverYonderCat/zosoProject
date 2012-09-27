@@ -2,11 +2,9 @@
 
 namespace Zoso\Block;
 
-use Zoso\Entity\Block as Entity;
-
 interface BlockInterface
 {
-	public function setEntity(Entity $entity);
-	public function getEntity();
+	public function setData($blockData);
+	public function getData();
 	public function getHtml();
 }

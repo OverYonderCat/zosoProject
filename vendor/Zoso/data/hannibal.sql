@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 23. Sep 2012 um 07:14
+-- Erstellungszeit: 27. Sep 2012 um 06:31
 -- Server Version: 5.5.16
 -- PHP-Version: 5.3.8
 
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `block` (
   `blocktype_id` int(11) DEFAULT NULL,
   `label` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQ_831B972275D13D9B` (`blocktype_id`)
+  KEY `IDX_831B972275D13D9B` (`blocktype_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
@@ -44,7 +44,7 @@ INSERT INTO `block` (`id`, `blocktype_id`, `label`) VALUES
 CREATE TABLE IF NOT EXISTS `blocktype` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `classpath` varchar(255) NOT NULL,
+  `templateFile` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
@@ -52,8 +52,8 @@ CREATE TABLE IF NOT EXISTS `blocktype` (
 -- Daten für Tabelle `blocktype`
 --
 
-INSERT INTO `blocktype` (`id`, `name`, `classpath`) VALUES
-(1, 'SampleBlock', '\\Zoso\\Block\\SampleBlock');
+INSERT INTO `blocktype` (`id`, `name`, `templateFile`) VALUES
+(1, 'SampleBlock', 'sampleBlock.phtml');
 
 -- --------------------------------------------------------
 
@@ -67,6 +67,8 @@ CREATE TABLE IF NOT EXISTS `field` (
   `fieldtype_id` int(11) DEFAULT NULL,
   `label` varchar(255) NOT NULL,
   `value` varchar(255) NOT NULL,
+  `defaultValue` varchar(255) NOT NULL,
+  `options` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_5BF54558163BE712` (`fieldtype_id`),
   KEY `IDX_5BF5455875D13D9B` (`blocktype_id`)
@@ -76,8 +78,8 @@ CREATE TABLE IF NOT EXISTS `field` (
 -- Daten für Tabelle `field`
 --
 
-INSERT INTO `field` (`id`, `blocktype_id`, `fieldtype_id`, `label`, `value`) VALUES
-(2, 1, 1, 'Fieldlabel', 'FiedValue');
+INSERT INTO `field` (`id`, `blocktype_id`, `fieldtype_id`, `label`, `value`, `defaultValue`, `options`) VALUES
+(2, 1, 1, 'Fieldlabel', 'FiedValue', '', '');
 
 -- --------------------------------------------------------
 
@@ -88,8 +90,6 @@ INSERT INTO `field` (`id`, `blocktype_id`, `fieldtype_id`, `label`, `value`) VAL
 CREATE TABLE IF NOT EXISTS `fieldtype` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `inputType` varchar(255) NOT NULL,
-  `defaultValue` varchar(255) NOT NULL,
-  `options` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
@@ -97,8 +97,8 @@ CREATE TABLE IF NOT EXISTS `fieldtype` (
 -- Daten für Tabelle `fieldtype`
 --
 
-INSERT INTO `fieldtype` (`id`, `inputType`, `defaultValue`, `options`) VALUES
-(1, 'input', 'defaultValue', 'options');
+INSERT INTO `fieldtype` (`id`, `inputType`) VALUES
+(1, 'input');
 
 -- --------------------------------------------------------
 
@@ -187,5 +187,5 @@ ALTER TABLE `page`
 -- Constraints der Tabelle `pages_blocks`
 --
 ALTER TABLE `pages_blocks`
-  ADD CONSTRAINT `FK_6367EE77E9ED820C` FOREIGN KEY (`block_id`) REFERENCES `block` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_6367EE77C4663E4` FOREIGN KEY (`page_id`) REFERENCES `page` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `FK_6367EE77C4663E4` FOREIGN KEY (`page_id`) REFERENCES `page` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_6367EE77E9ED820C` FOREIGN KEY (`block_id`) REFERENCES `block` (`id`) ON DELETE CASCADE;
