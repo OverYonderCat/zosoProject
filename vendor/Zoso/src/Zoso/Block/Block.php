@@ -53,34 +53,6 @@ class Block implements BlockInterface
 				'fields' 	=> $fields
 		));
 		return $renderer->render($viewModel);
-		
-		/*
-		$blockType = $this->entity->getBlockType();
-		$blockName		= $blockType->getName();
-		$templateFile	= $blockType->getTemplateFile();
-		$fieldsCol		= $blockType->getFields();
-		// TODO instead of bypassin' $fieldsCol to $fields
-		// created populated array as $fields
-		$fields 		= $fieldsCol;
-		
-		$publicPath 	= realpath(__DIR__ . '/../../../../../public/templates/blocks');
-		$defaultPath	= realpath(__DIR__ . '/../../../view/zoso/templates/blocks');
-		$templatePath	= (is_file($publicPath . '/' . $templateFile)) ? $publicPath . DIRECTORY_SEPARATOR . $templateFile : $defaultPath . DIRECTORY_SEPARATOR . $templateFile;
-		$templateMap	= array(
-			'blockTemplate'	=> $templatePath	
-		);
-		$resolver		= new Resolver\TemplateMapResolver($templateMap);
-		$renderer		= new PhpRenderer();
-		$renderer->setResolver($resolver);
-		$viewModel		= new ViewModel();
-		$viewModel->setTemplate('blockTemplate');
-		$viewModel->setVariables(array(
-				'name'		=> $blockName,
-				'fields' 	=> $fields
-		));
-		$html 			= $renderer->render($viewModel);
-		return $html;
-		*/
 	}
 	
 }
