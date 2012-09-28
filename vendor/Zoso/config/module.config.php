@@ -3,7 +3,7 @@
 return array(
 	'controllers' => array(
         'invokables' => array(
-            'zoso-slug' => 'Zoso\Controller\SlugController',
+            'zoso-page' => 'Zoso\Controller\PageController',
         ),
     ),
 	'router' => array(
@@ -17,8 +17,8 @@ return array(
 						'slug'	=> '.*'		
 					),
 					'defaults'		=> array(
-						'controller'	=> 'zoso-slug',
-						'action'		=> 'process',
+						'controller'	=> 'zoso-page',
+						'action'		=> 'display',
 						'slug'			=> 'startpage'		
 					)		
 				)		
@@ -31,6 +31,7 @@ return array(
 		),
 		'template_path_stack' => array(
 			__DIR__ . '/../view',
+			__DIR__ . '/../../../public'
 		),
 	),
 		

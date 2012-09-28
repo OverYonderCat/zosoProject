@@ -14,10 +14,10 @@ class PageRepository extends BaseRepository
 		   ->leftJoin('blocks.blocktype', 'blocktype')
 		   ->leftJoin('blocktype.fields', 'fields')
 		   ->leftJoin('fields.fieldtype' , 'fieldtype')
-		   ->where('page.slug = :slug')
+		   ->where($qb->expr()->eq('page.slug', ':slug'))
 		   ->setParameter('slug', $slug);
 		$query = $qb->getQuery();
-		$result = $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+		$result = $query->getResult();//(\Doctrine\ORM\Query::HYDRATE_ARRAY);
 		if(empty($result)) {
 			return null;
 		}
