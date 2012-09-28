@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 27. Sep 2012 um 06:31
+-- Erstellungszeit: 28. Sep 2012 um 22:12
 -- Server Version: 5.5.16
 -- PHP-Version: 5.3.8
 
@@ -70,8 +70,8 @@ CREATE TABLE IF NOT EXISTS `field` (
   `defaultValue` varchar(255) NOT NULL,
   `options` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQ_5BF54558163BE712` (`fieldtype_id`),
-  KEY `IDX_5BF5455875D13D9B` (`blocktype_id`)
+  KEY `IDX_5BF5455875D13D9B` (`blocktype_id`),
+  KEY `IDX_5BF54558163BE712` (`fieldtype_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
