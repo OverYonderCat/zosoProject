@@ -47,8 +47,7 @@ class Field extends BaseEntity
 	protected $options;
 	
 	/**
-	 * @ORM\OneToOne(targetEntity="FieldType")
-	 * @ORM\JoinColumn(name="fieldtype_id", referencedColumnName="id")
+	 * @ORM\ManyToOne(targetEntity="FieldType", cascade={"all"}, fetch="EAGER")
 	 */
 	protected $fieldtype;
 	
