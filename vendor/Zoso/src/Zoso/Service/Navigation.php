@@ -14,8 +14,11 @@ class Navigation
 	
 	protected $container;
 	
-	public function __construct()
-	{}
+	public function __construct(EntityManager $entityManager = null, TreeRouteStack $routeStack = null)
+	{
+		$this->em = $entityManager;
+		$this->routeStack = $routeStack;
+	}
 	
 	public function setEntityManager(EntityManager $entityManager)
 	{
@@ -38,6 +41,17 @@ class Navigation
 		if($this->container === null) {
 			// fetch data from entity and prepare as container
 			$this->container = array();
+			// testcontainer
+			$this->container = array(
+				array(
+					'label' => 'foo',
+					'route' => 'zfcuser'
+				),
+				array(
+					'label' => 'test',
+					'uri' => '/testslug'	
+				)
+			);
 		}
 		return $this->container;
 	}

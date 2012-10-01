@@ -38,7 +38,7 @@ class BlockType extends BaseEntity
 	
 	/**
 	 * @ORM\ManyToMany(targetEntity="FieldType")
-	 * @ORM\JoinTable(name="blocks_fieldtypes")
+	 * @ORM\JoinTable(name="blocktypes_fieldtypes")
 	 */
 	protected $fieldTypes;
 	
