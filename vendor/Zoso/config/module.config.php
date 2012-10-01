@@ -25,6 +25,11 @@ return array(
 			)		
 		)		
 	),
+	'service_manager' => array(
+		'invokables' => array(
+			'zoso-navigation' => 'Zoso\Service\Navigation'		
+		)	
+	),
 	'view_manager' => array(
 		'template_map' => array(
 		//	'layout/layout'           => __DIR__ . '/../../../public/zoso/templates/layout/layout.phtml'
@@ -34,7 +39,6 @@ return array(
 			__DIR__ . '/../../../public'
 		),
 	),
-		
 	'doctrine' => array(
 		'driver' => array(
 			'Zoso_driver' => array(

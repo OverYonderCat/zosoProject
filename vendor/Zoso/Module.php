@@ -3,6 +3,7 @@
 namespace Zoso;
 
 use Zend\ModuleManager\ModuleManager;
+use Zend\Mvc\MvcEvent;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
@@ -12,7 +13,7 @@ class Module implements
     ConfigProviderInterface,
     ServiceProviderInterface
 {
-
+	
     public function getAutoloaderConfig()
     {
         return array(
@@ -40,9 +41,16 @@ class Module implements
 
     public function getServiceConfig()
     {
-        return array(
-        	
-        );
+    	return array(
+    		'factories' => array(
+    			'Navigation' => function($sm) {
+    				$zosoNavigation = $sm->get('zoso-navigation');
+    				$zosoNavigation->setEntityManager($sm->get('doctrine.entitymanager.ormdefault'));
+    				$zosoNavigation->setRouteStack($sm->get('router'));
+    				return $zosoNavigation->getNavigation();
+    			}
+    		)
+    	);   
     }
 }
 
