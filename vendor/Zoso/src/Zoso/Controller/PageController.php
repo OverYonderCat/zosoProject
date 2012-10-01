@@ -21,7 +21,7 @@ class PageController extends BaseController
 			foreach($pageEntity->getBlocks() as $block) {
 				$templateFile = $block->getBlockType()->getTemplateFile();
 				$blockModel = new ViewModel(array(
-					'fields' => $block->getBlockType()->getFields()	
+					'fields' => $block->getFields()	
 				));
 				$blockModel->setTemplate('zoso/templates/blocks/' . $templateFile);
 				// add blockmodel to viewmodel
@@ -34,38 +34,3 @@ class PageController extends BaseController
 	
 	
 }
-
-/**
-
-$slug = $this->event->getRouteMatch()->getParam('slug');
-// fetch pageEntity via slug
-$pageRepository = $this->em->getRepository('Zoso\Entity\Page');
-$pageEntity = $pageRepository->fetchBySlug($slug);
-$page = new Page($pageEntity);
-return $page->getPageModel();
-
-if($this->blockData === null) {
-	throw new \Exception('method getHtml() cannot be called without $blockData');
-}
-
-$blockName		= $this->blockData['blocktype']['name'];
-$templateFile	= $this->blockData['blocktype']['templateFile'];
-$fields			= $this->blockData['blocktype']['fields'];
-
-$publicPath 	= realpath(__DIR__ . '/../../../../../public/templates/blocks');
-$defaultPath	= realpath(__DIR__ . '/../../../view/zoso/templates/blocks');
-$templatePath	= (is_file($publicPath . '/' . $templateFile)) ? $publicPath . DIRECTORY_SEPARATOR . $templateFile : $defaultPath . DIRECTORY_SEPARATOR . $templateFile;
-$templateMap	= array(
-		'blockTemplate'	=> $templatePath
-);
-$resolver		= new Resolver\TemplateMapResolver($templateMap);
-$renderer		= new PhpRenderer();
-$renderer->setResolver($resolver);
-$viewModel		= new ViewModel();
-$viewModel->setTemplate('blockTemplate');
-$viewModel->setVariables(array(
-		'name'		=> $blockName,
-		'fields' 	=> $fields
-));
-return $renderer->render($viewModel);
-**/

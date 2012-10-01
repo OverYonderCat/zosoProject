@@ -35,6 +35,16 @@ class Block extends BaseEntity
 	 * @ORM\ManyToOne(targetEntity="BlockType", cascade={"all"}, fetch="EAGER")
 	 */
 	protected $blocktype;
+	
+	/**
+	 * @ORM\OneToMany(targetEntity="Field", mappedBy="block")
+	 */
+	protected $fields;
+	
+	public function __construct()
+	{
+		$this->fields = new ArrayCollection();
+	}
 
 	public function getId()
 	{
@@ -64,6 +74,17 @@ class Block extends BaseEntity
 	
 	public function setBlockType($blocktype) {
 		$this->blocktype = $blocktype;
+		return $this;
+	}
+	
+	public function getFields()
+	{
+		return $this->fields;
+	}
+	
+	public function setFields(ArrayCollection $fields)
+	{
+		$this->fields = $fields;
 		return $this;
 	}
 }

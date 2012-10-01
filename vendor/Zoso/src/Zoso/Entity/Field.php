@@ -52,9 +52,9 @@ class Field extends BaseEntity
 	protected $fieldtype;
 	
 	/**
-	 * @ORM\ManyToOne(targetEntity="BlockType", inversedBy="fields")
+	 * @ORM\ManyToOne(targetEntity="Block", inversedBy="fields")
 	 */
-	protected $blocktype;
+	protected $block;
 
 	public function getId()
 	{
@@ -112,11 +112,11 @@ class Field extends BaseEntity
 	}
 	
 	public function getBlockType() {
-		return $this->blocktype;
+		return $this->block;
 	}
 	
-	public function setBlockType($blocktype) {
-		$this->blocktype = $blocktype;
+	public function setBlockType($block) {
+		$this->block = $block;
 		return $this;
 	}
 	
