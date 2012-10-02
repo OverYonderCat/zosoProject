@@ -21,7 +21,8 @@ class PageController extends BaseController
 			foreach($pageEntity->getBlocks() as $block) {
 				$templateFile = $block->getBlockType()->getTemplateFile();
 				$blockModel = new ViewModel(array(
-					'fields' => $block->getFields()	
+					'zoso-pageId' => $pageEntity->getId(),
+					'zoso-fields' => $block->getFields()	
 				));
 				$blockModel->setTemplate('zoso/templates/blocks/' . $templateFile);
 				// add blockmodel to viewmodel

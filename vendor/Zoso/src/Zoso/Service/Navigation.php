@@ -44,12 +44,13 @@ class Navigation
 			// testcontainer
 			$this->container = array(
 				array(
-					'label' => 'foo',
-					'route' => 'zfcuser'
-				),
-				array(
-					'label' => 'test',
-					'uri' => '/testslug'	
+					'label' => 'test2',
+					'type'	=> 'mvc',
+					'route' => 'zoso-slug',
+					'module' => 'zoso',
+					'controller' => 'page',
+					'action'	=> 'display',
+					'params'=> array('slug' => 'testslug')
 				)
 			);
 		}
