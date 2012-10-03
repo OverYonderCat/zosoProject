@@ -42,35 +42,30 @@ class Navigation
 			$pages = $this->em->getRepository('Zoso\Entity\Page')->fetchNavigationArray();
 			$container = array();
 			foreach($pages as $page) {
-				$container[] = array(
-					'label'		=> $page['label'],
-					'type'		=> 'mvc',
-					'route'		=> $page['route'],
-					'params'	=> array(
-						'slug'	=> $page['slug']		
-					)		
-				);
+				$container[] = $this->getPageArray($page);
 			}
 			$this->container = $container;
-			/*
-			// testcontainer
-			$this->container = array(
-				array(
-					'label' => 'test2',
-					'type'	=> 'mvc',
-					'route' => 'zoso-slug',
-					'module' => 'zoso',
-					'controller' => 'page',
-					'action'	=> 'display',
-					'params'=> array(
-						'slug' => 'testslug'
-					)
-				)
-			);
-			*/
-			
 		}
 		return $this->container;
+	}
+		
+	protected function getPageArray($page)
+	{
+		$pageArray = array(
+			'label'		=> $page['label'],
+			'type'		=> 'mvc',
+			'route'		=> $page['route'],
+			'params'	=> array(
+					'slug'	=> $page['slug']
+			)
+		);
+		if(isset($page['parent'])) {
+			$pageArray['pages'] = array();
+			foreach($page['parent'] as $subPage) {
+				$pageArray['pages'][] = $this->getPageArray($subPage);
+			} 
+		}
+		return $pageArray;
 	}
 
 }
