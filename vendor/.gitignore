@@ -2,4 +2,8 @@
 .composer
 composer
 zendframework
+doctrine
+firephp
+symfony
+zf-commons
 autoload.php
