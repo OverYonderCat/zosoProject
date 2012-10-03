@@ -45,6 +45,19 @@ class Navigation
 				$container[] = $this->getPageArray($page);
 			}
 			$this->container = $container;
+			/*
+			$this->container = array(
+				array(
+					'label' => 'test2',
+					'type'    => 'mvc',
+					'route' => 'zoso-slug',
+					'module' => 'zoso',
+					'controller' => 'zoso-page',
+					'action'    => 'display',
+					'params'=> array('slug' => 'testslug')
+				),
+			);
+			*/
 		}
 		return $this->container;
 	}
