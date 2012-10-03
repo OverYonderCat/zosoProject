@@ -9,38 +9,50 @@ class Navigation
 {
 
 	protected $em;
-	
-	protected $routeStack;
-	
-	protected $container;
-	
-	public function __construct(EntityManager $entityManager = null, TreeRouteStack $routeStack = null)
+
+	protected $router;
+
+	protected $container = null;
+
+	public function __construct(EntityManager $entityManager = null, TreeRouteStack $router = null)
 	{
 		$this->em = $entityManager;
-		$this->routeStack = $routeStack;
+		$this->router = $router;
 	}
-	
+
 	public function setEntityManager(EntityManager $entityManager)
 	{
 		$this->em = $entityManager;
 	}
-	
-	public function setRouteStack(TreeRouteStack $routeStack)
+
+	public function setRouter(TreeRouteStack $router)
 	{
-		$this->routeStack = $routeStack;
+		$this->router = $router;
 	}
-	
+
 	public function getNavigation()
 	{
-		\Zend\Navigation\Page\Mvc::setDefaultRouter($this->routeStack);
+		\Zend\Navigation\Page\Mvc::setDefaultRouter($this->router);
 		return new \Zend\Navigation\Navigation($this->getContainer());
 	}
-	
+
 	protected function getContainer()
 	{
 		if($this->container === null) {
-			// fetch data from entity and prepare as container
-			$this->container = array();
+			$pages = $this->em->getRepository('Zoso\Entity\Page')->fetchNavigationArray();
+			$container = array();
+			foreach($pages as $page) {
+				$container[] = array(
+					'label'		=> $page['label'],
+					'type'		=> 'mvc',
+					'route'		=> $page['route'],
+					'params'	=> array(
+						'slug'	=> $page['slug']		
+					)		
+				);
+			}
+			$this->container = $container;
+			/*
 			// testcontainer
 			$this->container = array(
 				array(
@@ -50,11 +62,15 @@ class Navigation
 					'module' => 'zoso',
 					'controller' => 'page',
 					'action'	=> 'display',
-					'params'=> array('slug' => 'testslug')
+					'params'=> array(
+						'slug' => 'testslug'
+					)
 				)
 			);
+			*/
+			
 		}
 		return $this->container;
 	}
-	
+
 }

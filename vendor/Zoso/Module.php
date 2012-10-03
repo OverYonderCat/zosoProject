@@ -36,7 +36,11 @@ class Module implements
 
     public function getViewHelperConfig()
     {
-        return array();
+        return array(
+        	'invokables' => array(
+        		'zosoFooter' => 'Zoso\View\Helper\ZosoFooter'		
+        	)
+        );
 
     }
 
@@ -47,7 +51,7 @@ class Module implements
     			'Navigation' => function($sm) {
     				$zosoNavigation = $sm->get('zoso-navigation');
     				$zosoNavigation->setEntityManager($sm->get('doctrine.entitymanager.ormdefault'));
-    				$zosoNavigation->setRouteStack($sm->get('router'));
+    				$zosoNavigation->setRouter($sm->get('router'));
     				return $zosoNavigation->getNavigation();
     			}
     		)

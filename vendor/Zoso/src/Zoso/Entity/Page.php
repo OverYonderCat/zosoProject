@@ -35,6 +35,11 @@ class Page extends BaseEntity
 	/**
 	 * @ORM\Column(type="string")
 	 */
+	protected $route;
+	
+	/**
+	 * @ORM\Column(type="string")
+	 */
 	protected $slug;
 	
 	/**
@@ -73,6 +78,17 @@ class Page extends BaseEntity
 	public function setLabel($label)
 	{
 		$this->label = $label;
+		return $this;
+	}
+	
+	public function getRoute()
+	{
+		return $this->route;
+	}
+	
+	public function setRoute($route)
+	{
+		$this->route = $route;
 		return $this;
 	}
 	

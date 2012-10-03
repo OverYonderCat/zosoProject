@@ -20,4 +20,14 @@ class PageRepository extends BaseRepository
 		return $result[0];
 	}
 	
+	public function fetchNavigationArray()
+	{
+		$qb = $this->_em->createQueryBuilder();
+		$qb->select('page')
+			->from('Zoso\Entity\Page', 'page')
+			->where($qb->expr()->isNull('page.parent'));
+		$query = $qb->getQuery();
+		return $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+	}
+	
 }
