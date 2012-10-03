@@ -45,7 +45,6 @@ class Navigation
 				$container[] = $this->getPageArray($page);
 			}
 			$this->container = $container;
-			/*
 			$this->container = array(
 				array(
 					'label' => 'test2',
@@ -56,8 +55,15 @@ class Navigation
 					'action'    => 'display',
 					'params'=> array('slug' => 'testslug')
 				),
+				array(
+					'label' => 'test3',
+					'type'    => 'mvc',
+					'route' => 'zfcuser',
+					'module' => 'ZfcUser',
+					'controller' => 'zfcuser',
+					'action'    => 'login',
+				)
 			);
-			*/
 		}
 		return $this->container;
 	}

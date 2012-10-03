@@ -3,7 +3,8 @@
 return array(
 	'controllers' => array(
         'invokables' => array(
-            'zoso-page' => 'Zoso\Controller\PageController',
+            'zoso-page'		=> 'Zoso\Controller\PageController',
+        	'zoso-admin'	=> 'Zoso\Controller\AdminController'
         ),
     ),
 	'router' => array(
@@ -22,6 +23,18 @@ return array(
 						'slug'			=> 'startpage'		
 					)		
 				)		
+			),
+			'zoso-admin' => array(
+				'type'		=> 'literal',
+				'priority'	=> 20,
+				'options'	=> array(
+					'route'		=> '/zosoAdmin',
+					'defaults'	=> array(
+						'controller'	=> 'zoso-admin',
+						'action'		=> 'index'		
+					)		
+				),
+				'may_terminate' => true
 			)		
 		)		
 	),
