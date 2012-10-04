@@ -9,9 +9,12 @@ class AdminController extends BaseController
 	
 	public function indexAction()
 	{
+		/*
 		$viewModel = new ViewModel();
 		$viewModel->setTerminal(true);
 		return $viewModel;
+		*/
+		$this->layout('zoso/templates/layout/admin.phtml');
 	}
 	
 	

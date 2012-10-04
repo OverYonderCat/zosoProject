@@ -53,7 +53,14 @@ class Module implements
     				$zosoNavigation->setEntityManager($sm->get('doctrine.entitymanager.ormdefault'));
     				$zosoNavigation->setRouter($sm->get('router'));
     				return $zosoNavigation->getNavigation();
-    			}
+    			},
+    			'AdminNavigation' => function($sm) {
+    				$zosoAdminNavigation = $sm->get('zoso-admin-navigation');
+    				$zosoAdminNavigation->setRouter($sm->get('router'));
+    				$config = $sm->get('config');
+    				$zosoAdminNavigation->setConfig($config['zoso']['adminnavigation']);
+    				return $zosoAdminNavigation->getNavigation();
+    			},
     		)
     	);   
     }

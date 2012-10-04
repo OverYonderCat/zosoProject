@@ -32,6 +32,12 @@ class PageController extends BaseController
 		return $view;
 	}
 	
+	public function listAction()
+	{
+		echo "PageController::listAction";
+		return new \Zend\Http\Response();
+	}
+	
 	
 	
 }

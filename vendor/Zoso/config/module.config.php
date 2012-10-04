@@ -1,10 +1,32 @@
 <?php
 
 return array(
+	'zoso' => array(
+		'adminnavigation' => array(
+			array(
+				'label' => 'Pages',
+				'type'    => 'mvc',
+				'route' => 'zoso-admin',
+				'params' => array(
+					'controller' => 'page',
+					'action' => 'list'		
+				)
+			),
+			array(
+				'label' => 'Blocks',
+				'type'    => 'mvc',
+				'route' => 'zoso-admin',
+				'params' => array(
+					'controller' => 'block',
+					'action' => 'list'		
+				)
+			)
+		)	
+	),
 	'controllers' => array(
         'invokables' => array(
-            'zoso-page'		=> 'Zoso\Controller\PageController',
-        	'zoso-admin'	=> 'Zoso\Controller\AdminController'
+            'page'		=> 'Zoso\Controller\PageController',
+        	'admin'	=> 'Zoso\Controller\AdminController'
         ),
     ),
 	'router' => array(
@@ -18,19 +40,24 @@ return array(
 						'slug'	=> '.{2,}'		
 					),
 					'defaults'		=> array(
-						'controller'	=> 'zoso-page',
+						'controller'	=> 'page',
 						'action'		=> 'display',
 						'slug'			=> 'startpage'		
 					)		
 				)		
 			),
 			'zoso-admin' => array(
-				'type'		=> 'literal',
+				'type'		=> 'Segment',
 				'priority'	=> 20,
 				'options'	=> array(
-					'route'		=> '/zosoAdmin',
+					'route'		=> '/zosoAdmin[/:controller[/:action[/:id]]]',
+					'constraints' => array(
+						'controller'	=> '[a-zA-Z][a-zA-Z0-9_-]*',
+						'action'		=> '[a-zA-Z][a-zA-Z0-9_-]*',
+						'id'			=> '[0-9]*'
+					),
 					'defaults'	=> array(
-						'controller'	=> 'zoso-admin',
+						'controller'	=> 'admin',
 						'action'		=> 'index'		
 					)		
 				),
@@ -40,7 +67,8 @@ return array(
 	),
 	'service_manager' => array(
 		'invokables' => array(
-			'zoso-navigation' => 'Zoso\Service\Navigation'		
+			'zoso-navigation' => 'Zoso\Service\Navigation\Site',
+			'zoso-admin-navigation' => 'Zoso\Service\Navigation\Admin'		
 		)	
 	),
 	'view_manager' => array(
