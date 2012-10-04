@@ -4,7 +4,8 @@ namespace Zoso\Service\Navigation;
 
 use Zend\Mvc\Router\Http\TreeRouteStack,
 	Zend\Navigation\Page\Mvc,
-	Zend\Navigation\Navigation;
+	Zend\Navigation\Navigation,
+	Zend\Navigation\Service\DefaultNavigationFactory;
 	
 
 abstract class AbstractNavigation
@@ -14,15 +15,22 @@ abstract class AbstractNavigation
 	
 	protected $container = null;
 	
+	protected $config = null;
+	
 	public function setRouter(TreeRouteStack $router)
 	{
 		$this->router = $router;
 	}
 	
+	public function setConfig($config)
+	{
+		$this->config = $config;
+	}
+	
 	public function getNavigation()
 	{
-		Mvc::setDefaultRouter($this->router);
-		return new Navigation($this->getContainer());
+		$container = new Navigation($this->getContainer());
+		return new DefaultNavigationFactory($container);
 	}
 	
 	protected function getPageArray($page)

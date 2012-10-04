@@ -2,23 +2,33 @@
 
 return array(
 	'zoso' => array(
-		'adminnavigation' => array(
-			array(
-				'label' => 'Pages',
-				'type'    => 'mvc',
-				'route' => 'zoso-admin',
-				'params' => array(
-					'controller' => 'page',
-					'action' => 'list'		
-				)
+		'navigation' => array(
+			'settings' => array(
+				'addAdminLink' => false	
 			),
-			array(
-				'label' => 'Blocks',
-				'type'    => 'mvc',
-				'route' => 'zoso-admin',
-				'params' => array(
-					'controller' => 'block',
-					'action' => 'list'		
+			'adminnavigation' => array(
+				array(
+					'label' => 'Pages',
+					'type'    => 'mvc',
+					'route' => 'zoso-admin',
+					'params' => array(
+						'controller' => 'page',
+						'action' => 'list'		
+					)
+				),
+				array(
+					'label' => 'Blocks',
+					'type'    => 'mvc',
+					'route' => 'zoso-admin',
+					'params' => array(
+						'controller' => 'block',
+						'action' => 'list'		
+					)
+				),
+				array(
+					'label'		=> 'Switch to Frontend',
+					'type'		=> 'mvc',
+					'route'		=> 'home'		
 				)
 			)
 		)	

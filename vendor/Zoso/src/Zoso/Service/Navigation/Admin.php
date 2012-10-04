@@ -7,23 +7,16 @@ use Doctrine\ORM\EntityManager;
 class Admin extends AbstractNavigation
 {
 
-	protected $config = null;
-
-	public function __construct($config = null, TreeRouteStack $router = null)
+	public function __construct(TreeRouteStack $router = null, $config = null)
 	{
-		$this->config = $config;
 		$this->router = $router;
+		$this->config = $config;
 	}
 	
-	public function setConfig($config)
-	{
-		$this->config = $config;
-	}
-
 	protected function getContainer()
 	{
 		if($this->container === null) {
-			$this->container = $this->config;
+			$this->container = $this->config['adminnavigation'];
 		}
 		return $this->container;
 	}
