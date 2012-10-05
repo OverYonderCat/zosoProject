@@ -31,6 +31,7 @@ class Module implements
 			if(!$target->zfcUserAuthentication()->hasIdentity()) {
 				$target->redirect()->toRoute('zfcuser/login');
 			}
+			$target->layout('zoso/templates/layout/admin.phtml');
 		}
 	}
 	
@@ -57,7 +58,10 @@ class Module implements
     {
         return array(
         	'invokables' => array(
-        		'zosoFooter' => 'Zoso\View\Helper\ZosoFooter'		
+        		// helpers for "public-templates"
+        		'zosoFooter' => 'Zoso\View\Helper\ZosoFooter',
+        		// "internal-templates"
+        		'pageInspector' => 'Zoso\View\Helper\PageInspector',		
         	)
         );
 

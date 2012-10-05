@@ -14,7 +14,6 @@ class AdminController extends BaseController
 		$viewModel->setTerminal(true);
 		return $viewModel;
 		*/
-		$this->layout('zoso/templates/layout/admin.phtml');
 	}
 	
 	
