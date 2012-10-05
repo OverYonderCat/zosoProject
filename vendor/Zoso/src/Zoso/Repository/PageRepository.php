@@ -8,12 +8,17 @@ class PageRepository extends BaseRepository
 	public function fetchBySlug($slug)
 	{
 		$qb = $this->_em->createQueryBuilder();
-		$qb->select('page')
+		$qb->select('page', 'blocks', 'fields', 'blocktype', 'fieldtype')
 		   ->from('Zoso\Entity\Page', 'page')
+		   ->leftJoin('page.blocks', 'blocks')
+		   ->leftJoin('blocks.fields', 'fields')
+		   ->leftJoin('blocks.blocktype', 'blocktype')
+		   ->leftJoin('fields.fieldtype', 'fieldtype')
 		   ->where($qb->expr()->eq('page.slug', ':slug'))
 		   ->setParameter('slug', $slug);
+		
 		$query = $qb->getQuery();
-		$result = $query->getResult();//(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+		$result = $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
 		if(empty($result)) {
 			return null;
 		}
