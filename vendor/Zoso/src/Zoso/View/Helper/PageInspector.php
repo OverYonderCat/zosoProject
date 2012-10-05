@@ -13,8 +13,7 @@ class PageInspector extends AbstractHelper
 		$view->headLink()->appendStylesheet('/zoso/css/pageInspector.css', 'screen');
 		$view->inlineScript()->appendScript(
 			'$(function() {
-				//$("#pageInspector").pageInspector();
-				console.debug("sansibar");
+				$("#pageInspector").pageInspector();
 			});'
 		);
 		$view->setVars(array(

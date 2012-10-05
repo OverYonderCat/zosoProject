@@ -1,10 +1,11 @@
 <?php
 
 echo "ich bin ein oger<hr />";
-var_dump($this->pages);
+var_dump(json_encode($this->pages));
 echo '<hr />';
 ?>
 
 
 <div id="pageInspector">
 </div>
+<textarea id="pageInspectorData" class="hidden"><?php echo json_encode($this->pages); ?></textarea>
