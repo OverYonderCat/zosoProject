@@ -4,7 +4,7 @@ return array(
 	'zoso' => array(
 		'navigation' => array(
 			'settings' => array(
-				'addAdminLink' => false	
+				'addAdminLink' => true	
 			),
 			'adminnavigation' => array(
 				array(
@@ -77,8 +77,7 @@ return array(
 	),
 	'service_manager' => array(
 		'invokables' => array(
-			'zoso-navigation' => 'Zoso\Service\Navigation\Site',
-			'zoso-admin-navigation' => 'Zoso\Service\Navigation\Admin'		
+			'zoso-navigation-factory' => 'Zoso\Service\Navigation\NavigationFactory'		
 		)	
 	),
 	'view_manager' => array(
