@@ -89,6 +89,11 @@ return array(
 			__DIR__ . '/../../../public'
 		),
 	),
+	'controller_plugins' => array(
+		'invokables' => array(
+			'zosoPrepareBlockFields' => 'Zoso\Controller\Plugin\PrepareBlockFields',
+		),
+	),
 	'translator' => array(
 		'locale' => 'de_DE',
 	),
