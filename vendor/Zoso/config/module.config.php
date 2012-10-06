@@ -88,6 +88,9 @@ return array(
 			__DIR__ . '/../view',
 			__DIR__ . '/../../../public'
 		),
+		'strategies' => array(
+			'ViewJsonStrategy',
+		),
 	),
 	'translator' => array(
 		'locale' => 'de_DE',

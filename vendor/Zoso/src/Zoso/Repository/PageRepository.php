@@ -35,4 +35,15 @@ class PageRepository extends BaseRepository
 		return $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
 	}
 	
+	public function fetchChildrenById($parentid)
+	{
+		$qb = $this->_em->createQueryBuilder();
+		$qb->select('page')
+			->from('Zoso\Entity\Page', 'page')
+			->where($qb->expr()->eq('page.parent', ':parentid'))
+			->setParameter('parentid', $parentid);
+		$query = $qb->getQuery();
+		return $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+	}
+	
 }

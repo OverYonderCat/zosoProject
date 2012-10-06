@@ -43,8 +43,8 @@ class Page extends BaseEntity
 	protected $slug;
 	
 	/**
-	 * @ORM\OneToOne(targetEntity="Page")
- 	 * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+	 * @ORM\ManyToOne(targetEntity="Page", inversedBy="children")
+	 * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
 	 */
 	protected $parent;
 	
@@ -111,5 +111,16 @@ class Page extends BaseEntity
 	public function setBlocks(ArrayCollection $blocks)
 	{
 		$this->blocks = $blocks;
+	}
+
+	public function getParent()
+	{
+		return $this->parent;
+	}
+	
+	public function setParent($parent)
+	{
+		$this->parent = $parent;
+		return $this;
 	}
 }

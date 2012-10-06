@@ -52,16 +52,10 @@ var PageInspector = {
 	},
 	
 	onclick: function(e) {
-		console.debug(e);
-		/*
-		 * run ajaxrequest to fetch childrens
-		 * if result is not empty create a new list
-		 * and hang it into the rootelement
-		 * 
-		 * additionaly we run a second request fetching
-		 * clicked page-data and display it in the
-		 * content-section
-		 */
+		var pageId = e.currentTarget.dataset.pageid;
+		$.get('/zosoAdmin/page/get-children/' + pageId, function(response) {
+			console.debug(response);
+		});
 	}
 	
 };
