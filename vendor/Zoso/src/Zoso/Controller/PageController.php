@@ -3,6 +3,7 @@
 namespace Zoso\Controller;
 
 use Zend\View\Model\ViewModel;
+use Zend\View\Model\JsonModel;
 
 class PageController extends BaseController
 {
@@ -35,6 +36,17 @@ class PageController extends BaseController
 		));
 	}
 	
+	public function getChildrenAction()
+	{
+		$parentPageId = $this->event->getRouteMatch()->getParam('id');
+		// fetch Children by parentid
+		$children = $this->getEntityManager()->getRepository('Zoso\Entity\Page')->fetchChildrenById($parentPageId);
+		if($children) {
+			return new JsonModel($children);
+		}
+		return new JsonModel();	
+	}
+	
 	private function prepareFieldArray($fields, $blocktype)
 	{
 		$indexFields = array();
@@ -42,8 +54,6 @@ class PageController extends BaseController
 			$indexFields[strtolower($blocktype['fieldmaps'][$i]['label'])] = $fields[$i];
 		}
 		return $indexFields;
-	}
-	
-	
+	}	
 	
 }
