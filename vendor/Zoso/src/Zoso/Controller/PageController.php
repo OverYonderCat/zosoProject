@@ -34,7 +34,6 @@ class PageController extends BaseController
 	
 	public function listAction()
 	{
-		//$this->layout('zoso/templates/layout/admin.phtml');
 		$pages = $this->getEntityManager()->getRepository('Zoso\Entity\Page')->fetchNavigationArray();
 		return new ViewModel(array(
 			'pages' => $pages		
