@@ -27,11 +27,6 @@ class Field extends BaseEntity
 	protected $id;
 
 	/**
-	 * @ORM\Column(type="string")
-	 */
-	protected $label;
-	
-	/**
 	 * @ORM\Column(type="text")
 	 */
 	protected $value;
@@ -64,17 +59,6 @@ class Field extends BaseEntity
 	public function setId($id)
 	{
 		$this->id = (int)$id;
-		return $this;
-	}
-	
-	public function getLabel()
-	{
-		return $this->label;
-	}
-	
-	public function setLabel($label)
-	{
-		$this->label = $label;
 		return $this;
 	}
 	

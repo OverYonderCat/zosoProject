@@ -37,14 +37,14 @@ class BlockType extends BaseEntity
 	protected $templateFile;
 	
 	/**
-	 * @ORM\ManyToMany(targetEntity="FieldType")
-	 * @ORM\JoinTable(name="blocktypes_fieldtypes")
+	 * @ORM\ManyToMany(targetEntity="FieldMap")
+	 * @ORM\JoinTable(name="blocktypes_fieldmaps")
 	 */
-	protected $fieldTypes;
+	protected $fieldmaps;
 	
 	public function __construct()
 	{
-		$this->fieldTypes = new ArrayCollection();
+		$this->fieldmaps = new ArrayCollection();
 	}
 
 	public function getId()
@@ -80,14 +80,14 @@ class BlockType extends BaseEntity
 		return $this;
 	}
 	
-	public function getFieldTypes()
+	public function getFieldMaps()
 	{
-		return $this->fieldTypes;
+		return $this->fieldmaps;
 	}
 	
-	public function setFieldTypes(ArrayCollection $fieldTypes)
+	public function setFieldMaps(ArrayCollection $fieldMaps)
 	{
-		$this->fieldTypes = $fieldTypes;
+		$this->fieldmaps = $fieldMaps;
 		return $this;
 	}
 }
